@@ -4,8 +4,6 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-
 public class TurretBackgroundCode {
 
     private CRServo turret_shooter;
@@ -14,7 +12,7 @@ public class TurretBackgroundCode {
     private double goalx = 0;
     private double lasterror = 0;
     private double max_power = 0.6;
-    private double deadband = 1.0; // degrees; stop jittering when close enough
+    private double deadband = 1.0; // THIS IS IN DEGRESS, It prevents jittering?
 
     private final ElapsedTime timer = new ElapsedTime();
 
@@ -33,17 +31,17 @@ public class TurretBackgroundCode {
         timer.reset();
     }
 
-    public void update(AprilTagDetection curID) {
+    public void update(double tx, boolean tagFound) {
         double dT = timer.seconds();
         reset_timer();
 
-        if (curID == null || curID.ftcPose == null) {
+        if (!tagFound) {
             turret_shooter.setPower(0);
             lasterror = 0;
             return;
         }
 
-        double error = goalx - curID.ftcPose.bearing;
+        double error = goalx - tx;
 
         if (Math.abs(error) < deadband) {
             turret_shooter.setPower(0);
