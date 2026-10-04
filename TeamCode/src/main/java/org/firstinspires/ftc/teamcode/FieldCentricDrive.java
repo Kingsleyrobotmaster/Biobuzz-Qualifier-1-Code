@@ -27,6 +27,7 @@ public class FieldCentricDrive extends LinearOpMode {
 
         frontRight.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.REVERSE);
+        telemetry.addLine("Drive Trian Activated");
 
         for (DcMotor m : new DcMotor[]{frontLeft, frontRight, backLeft, backRight}) {
             m.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

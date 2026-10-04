@@ -24,7 +24,10 @@ public class Turret_Main extends OpMode {
         apriltagcamera = hardwareMap.get(Limelight3A.class, "limelight_camera");
         initialzingturret.init(hardwareMap);
         apriltagcamera.pipelineSwitch(0);
-        telemetry.addLine("Camera has been activated");                    // Tell William or someone to rename this and put the name here
+        telemetry.addLine("Camera has been activated");
+
+        telemetry.addLine("Turret Activated");
+        // Tell William or someone to rename this and put the name here
     }
 
     @Override
